@@ -59,4 +59,6 @@ public class TextureDrawer
 
         // draw updates the previous position from the mouse, so we dont need to update the cache.
     }
+
+    public RenderTexture RenderTexture => m_targetTexture;
 }

@@ -16,6 +16,7 @@ public class PaintingManager : MonoBehaviour
     [Space(10)]
 
     [SerializeField] private Texture2D m_brushTexture;
+    [SerializeField] private Texture2D m_goalTexture;
 
     private TextureDrawer m_drawer;
 
@@ -51,6 +52,11 @@ public class PaintingManager : MonoBehaviour
             if (draw_pos.x == -1 && draw_pos.y == -1) return;
 
             m_drawer.DrawTo(draw_pos);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            new Scoring().ScoreResult(m_drawer.RenderTexture, m_goalTexture);
         }
     }
 
