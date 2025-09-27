@@ -8,11 +8,11 @@ public class Brush
 
     public Brush(Texture2D brush_texture = null)
     {
-        m_brushTexture = brush_texture == null ? MakeSquareTexture(32) : brush_texture;
+        m_brushTexture = brush_texture == null ? MakeSquareTexture(64) : brush_texture;
         m_brushMaterial = new Material(Shader.Find("Sprites/Default")); // support alpha on brushes
         m_brushMaterial.color = Color.white;
 
-        m_size = new Vector2(brush_texture.width, brush_texture.height);
+        m_size = new Vector2(m_brushTexture.width, m_brushTexture.height);
     }
 
     public Texture2D BrushTexture => m_brushTexture;

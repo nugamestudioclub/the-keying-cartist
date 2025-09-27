@@ -28,7 +28,7 @@ public class PaintingManager : MonoBehaviour
         material.mainTexture = tex;
 
         RenderTexture.active = tex;
-        GL.Clear(true, true, Color.white);
+        GL.Clear(true, true, Color.clear);
         RenderTexture.active = null;
 
         m_drawer = new TextureDrawer(tex, new Brush(m_brushTexture));
@@ -67,7 +67,6 @@ public class PaintingManager : MonoBehaviour
 
             var pixel_coord = new Vector2(hit_coord.x * w_scalar * m_drawTextureWidth, (1 - hit_coord.y) * h_scalar * m_drawTextureHeight);
 
-            Debug.Log($"{mouse_pos} to {hit_coord} to {pixel_coord}");
             return pixel_coord;
         }
 

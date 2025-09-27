@@ -23,11 +23,13 @@ public class TextureDrawer
         GL.LoadPixelMatrix(0, m_targetTexture.height, m_targetTexture.width, 0);
 
         var source_rect = new Rect(0, 1, 1, 1); //REMOVED: flip x and y
+        float scaled_x = m_activeBrush.Size.x * ((float)m_targetTexture.height / m_targetTexture.width);
+        float scaled_y = m_activeBrush.Size.y * ((float)m_targetTexture.width / m_targetTexture.height);
         var rect = new Rect(
-            position.x - m_activeBrush.Size.x / 2,
-            position.y - m_activeBrush.Size.y / 2,
-            m_activeBrush.Size.x * ((float)m_targetTexture.height / m_targetTexture.width),
-            m_activeBrush.Size.y * ((float)m_targetTexture.width / m_targetTexture.height)
+            position.x - scaled_x / 2,
+            position.y - scaled_y / 2,
+            scaled_x,
+            scaled_y
         );
 
         Graphics.DrawTexture(rect, m_activeBrush.BrushTexture, source_rect, 0, 0, 0, 0, m_activeBrush.BrushMaterial);
