@@ -62,8 +62,12 @@ public class PaintingManager : MonoBehaviour
         {
             var hit_coord = hit.textureCoord;
 
-            var pixel_coord = new Vector2(hit_coord.x * m_drawTextureWidth, (1 - hit_coord.y) * m_drawTextureHeight);
+            float w_scalar = (float)m_drawTextureHeight / m_drawTextureWidth;
+            float h_scalar = (float)m_drawTextureWidth / m_drawTextureHeight;
 
+            var pixel_coord = new Vector2(hit_coord.x * w_scalar * m_drawTextureWidth, (1 - hit_coord.y) * h_scalar * m_drawTextureHeight);
+
+            Debug.Log($"{mouse_pos} to {hit_coord} to {pixel_coord}");
             return pixel_coord;
         }
 
