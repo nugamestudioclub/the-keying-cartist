@@ -25,7 +25,7 @@ public class Scoring
     }
 
 
-    public void ScoreResult()
+    public float ScoreResult()
     {
         uint hits = 0;
         uint total_in_source = 0;
@@ -63,12 +63,11 @@ public class Scoring
             }
         }
 
-        if (total_in_drawing == 0 || total_in_source == 0) return;
+        if (total_in_drawing == 0 || total_in_source == 0) return 0;
 
         float penalty = m_wastedCurve.Evaluate((float)wasted / total_in_drawing);
         float percentage = m_closeEnoughCurve.Evaluate((float)hits / total_in_source);
 
-        Debug.Log($"PENALTY: {penalty} from {(float)wasted / total_in_drawing}, PERCENTAGE: {percentage} from {(float)hits / total_in_source}");
-        Debug.Log(percentage * (1-penalty));
+        return percentage * (1 - penalty);
     }
 }

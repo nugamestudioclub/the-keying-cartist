@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject peekTarget;
     [SerializeField] private KeyCode peekKeybind = KeyCode.Q;
     private bool peeking = false;
-    private Vector3 startRotation;
+    private Vector3 forwardDirection;
 
     [Space(10)]
 
@@ -44,9 +44,11 @@ public class CameraController : MonoBehaviour
         m_focusHandler = new FocusOverlayHandler(m_focusOverlay);
     }
 
+    public bool IsInFocusMode() => m_isPulledBack;
+
     private void Start()
     {
-        startRotation = new Vector3(m_camera.rotation.x, m_camera.rotation.y, m_camera.rotation.z);
+        forwardDirection = m_camera.forward;
 
         peekTarget = GameObject.FindGameObjectWithTag("Driver");
     }
@@ -86,13 +88,13 @@ public class CameraController : MonoBehaviour
     {
         if (peeking && peekTarget != null)
         {
-            Vector3 targetDirection = (peekTarget.transform.position - m_camera.transform.position).normalized;
+            Vector3 targetDirection = (peekTarget.transform.position - m_camera.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
+            m_camera.rotation = Quaternion.Lerp(m_camera.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
         } else
         {
-            Quaternion targetRotation = Quaternion.LookRotation(startRotation);
-            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
+            Quaternion targetRotation = m_isPulledBack ? m_pullbackAnchor.rotation : Quaternion.LookRotation(forwardDirection);
+            m_camera.rotation = Quaternion.Lerp(m_camera.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
 
             m_focusHandler.ChangeFocus(m_isPulledBack ? 1f : 0f);
 
@@ -103,16 +105,17 @@ public class CameraController : MonoBehaviour
 
     private void MoveBoundsAnchor(float x_direction)
     {
+        // everything here is flipped (</>, +/-) to account for being rotated 180 degrees in world.
         var vec = m_boundAnchor.position;
-        vec.x += x_direction * m_cameraSpeed * Time.fixedDeltaTime;
+        vec.x -= x_direction * m_cameraSpeed * Time.fixedDeltaTime;
 
         m_boundAnchor.position = vec;
 
-        if (m_boundAnchor.position.x < m_leftSideBound.position.x)
+        if (m_boundAnchor.position.x > m_leftSideBound.position.x)
         {
             m_boundAnchor.position = m_leftSideBound.position;
         }
-        else if (m_boundAnchor.position.x > m_rightSideBound.position.x)
+        else if (m_boundAnchor.position.x < m_rightSideBound.position.x)
         {
             m_boundAnchor.position = m_rightSideBound.position;
         }

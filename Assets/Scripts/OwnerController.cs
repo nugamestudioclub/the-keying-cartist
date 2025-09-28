@@ -63,6 +63,10 @@ public class OwnerWalkingScript : MonoBehaviour
         else
         {
             SetAnimationState(true);
+
+            var flattened_dir = target_pos - transform.position;
+            flattened_dir.y = 0;
+            transform.forward = flattened_dir;
         }
 
         transform.position = target_pos;
@@ -89,7 +93,7 @@ public class OwnerWalkingScript : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1.25f / lerpSpeedToEachPosition[locationToMoveTo]);
+            yield return new WaitForSeconds(5f / lerpSpeedToEachPosition[locationToMoveTo]);
 
             walkingFrameIndex = (walkingFrameIndex + 1) % walkingFrames.Length;
             spriteRenderer.sprite = walkingFrames[walkingFrameIndex];

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PaintingManager : MonoBehaviour
 {
     [SerializeField] private Camera m_mainCamera;
+    [SerializeField] private CameraController m_cameraController;
     [SerializeField] private Renderer m_targetRenderer;
     [SerializeField] private LayerMask m_paintObjLayer;
 
@@ -39,6 +40,8 @@ public class PaintingManager : MonoBehaviour
 
     private void Update()
     {
+        if (m_cameraController.IsInFocusMode()) return;
+
         var mouse_pos = Input.mousePosition;
 
         if (Input.GetMouseButtonDown(0))
