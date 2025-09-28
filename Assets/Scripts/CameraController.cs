@@ -88,15 +88,15 @@ public class CameraController : MonoBehaviour
         {
             Vector3 targetDirection = (peekTarget.transform.position - m_camera.transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
         } else
         {
             Quaternion targetRotation = Quaternion.LookRotation(startRotation);
-            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
 
             m_focusHandler.ChangeFocus(m_isPulledBack ? 1f : 0f);
 
-            m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.deltaTime);
+            m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.fixedDeltaTime);
         }
 
     }
