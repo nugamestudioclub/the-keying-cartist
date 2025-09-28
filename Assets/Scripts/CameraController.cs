@@ -65,6 +65,7 @@ public class CameraController : MonoBehaviour
     private void LerpCamera()
     {
         m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.fixedDeltaTime);
+        m_camera.eulerAngles = Vector3.Lerp(m_camera.eulerAngles, m_anchorTarget.eulerAngles, m_cameraSpeed * Time.fixedDeltaTime);
     }
 
     private void MoveBoundsAnchor(float x_direction)
