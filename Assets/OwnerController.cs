@@ -17,7 +17,22 @@ public class OwnerWalkingScript : MonoBehaviour
     [SerializeField]
     private float[] lerpSpeedToEachPosition;
 
+    [Space(10)]
+
+    [SerializeField] 
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private Sprite[] walkingFrames;
+
+    [SerializeField]
+    private Sprite idleFrame;
+
     private int locationToMoveTo = 0;
+    private bool isAnimating = false;
+    private int walkingFrameIndex = 0;
+
+    private Coroutine animatingCoroutine;
     
 
 
@@ -32,7 +47,47 @@ public class OwnerWalkingScript : MonoBehaviour
     {
         Vector3 newLocation = positions[locationToMoveTo];
         float lerpRate = lerpSpeedToEachPosition[locationToMoveTo];
-        transform.position = Vector3.MoveTowards(transform.position, newLocation, Time.fixedDeltaTime * lerpRate);
+
+        var target_pos = Vector3.MoveTowards(transform.position, newLocation, Time.fixedDeltaTime * lerpRate);
+
+        if (target_pos == transform.position)
+        {
+            SetAnimationState(false);
+        }
+        else
+        {
+            SetAnimationState(true);
+        }
+
+        transform.position = target_pos;
+    }
+
+    private void SetAnimationState(bool state)
+    {
+        if (state == isAnimating) return;
+
+        isAnimating = state;
+
+        if (state)
+        {
+            animatingCoroutine = StartCoroutine(IEAnimateWalk());
+        }
+        else
+        {
+            StopCoroutine(animatingCoroutine);
+            spriteRenderer.sprite = idleFrame;
+        }
+    }
+
+    private IEnumerator IEAnimateWalk()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.25f);
+
+            walkingFrameIndex = (walkingFrameIndex + 1) % walkingFrames.Length;
+            spriteRenderer.sprite = walkingFrames[walkingFrameIndex];
+        }
     }
 
     private IEnumerator MoveOwnerAround()
