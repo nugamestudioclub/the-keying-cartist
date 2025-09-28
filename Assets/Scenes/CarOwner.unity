@@ -532,13 +532,16 @@ MonoBehaviour:
   lerpSpeedToEachPosition:
   - 5
   - 5
-  - 5
+  - 10
   - 2
   spriteRenderer: {fileID: 169196808}
   walkingFrames:
   - {fileID: 21300000, guid: 4d72bc497f5c0f945a8845e22015852d, type: 3}
   - {fileID: 21300000, guid: bcb095532a56d3f4c832596c91724d5a, type: 3}
   idleFrame: {fileID: 21300000, guid: d9c18da1ca24b66478a0355ed37469d7, type: 3}
+  OnGameEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1609170993
 GameObject:
   m_ObjectHideFlags: 0

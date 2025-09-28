@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OwnerWalkingScript : MonoBehaviour
 {
@@ -33,6 +34,11 @@ public class OwnerWalkingScript : MonoBehaviour
     private int walkingFrameIndex = 0;
 
     private Coroutine animatingCoroutine;
+
+    [Space(15)]
+
+    [SerializeField]
+    private UnityEvent OnGameEnd;
     
 
 
@@ -83,7 +89,7 @@ public class OwnerWalkingScript : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(1.25f / lerpSpeedToEachPosition[locationToMoveTo]);
 
             walkingFrameIndex = (walkingFrameIndex + 1) % walkingFrames.Length;
             spriteRenderer.sprite = walkingFrames[walkingFrameIndex];
@@ -98,5 +104,7 @@ public class OwnerWalkingScript : MonoBehaviour
             yield return new WaitForSeconds(timeAtEachPosition[i]);
         }
         yield return null;
+
+        OnGameEnd?.Invoke();
     }
 }
