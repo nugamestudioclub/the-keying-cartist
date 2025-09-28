@@ -28,12 +28,11 @@ public class OwnerWalkingScript : MonoBehaviour
         StartCoroutine(MoveOwnerAround());
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 newLocation = positions[locationToMoveTo];
         float lerpRate = lerpSpeedToEachPosition[locationToMoveTo];
-        transform.position = Vector3.Lerp(transform.position, newLocation, lerpRate);
+        transform.position = Vector3.MoveTowards(transform.position, newLocation, Time.fixedDeltaTime * lerpRate);
     }
 
     private IEnumerator MoveOwnerAround()
