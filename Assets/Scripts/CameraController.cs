@@ -79,10 +79,6 @@ public class CameraController : MonoBehaviour
             m_isPulledBack = false;
         }
 
-    }
-
-    private void LateUpdate()
-    {
         LerpCamera();
     }
 
