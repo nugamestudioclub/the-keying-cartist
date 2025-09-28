@@ -17,6 +17,8 @@ public class PaintingManager : MonoBehaviour
 
     [SerializeField] private Texture2D m_brushTexture;
     [SerializeField] private Texture2D m_goalTexture;
+    [SerializeField] private AnimationCurve m_closeEnoughCurve;
+    [SerializeField] private AnimationCurve m_wastedPixelPenaltyCurve;
 
     private TextureDrawer m_drawer;
 
@@ -56,7 +58,7 @@ public class PaintingManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            new Scoring().ScoreResult(m_drawer.RenderTexture, m_goalTexture);
+            new Scoring(m_drawer.RenderTexture, m_goalTexture, m_wastedPixelPenaltyCurve, m_closeEnoughCurve).ScoreResult();
         }
     }
 
