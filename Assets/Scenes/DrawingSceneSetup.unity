@@ -759,6 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_focusOverlay: {fileID: 657730269}
   peekTarget: {fileID: 0}
+  peekKeybind: 113
   m_cameraSpeed: 4
   cameraRotationSpeed: 5
   m_leftSideBound: {fileID: 1925644959}

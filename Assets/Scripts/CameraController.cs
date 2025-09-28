@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
     private FocusOverlayHandler m_focusHandler;
 
     [SerializeField] private GameObject peekTarget;
+    [SerializeField] private KeyCode peekKeybind = KeyCode.Q;
     private bool peeking = false;
     private Vector3 startRotation;
 
@@ -55,7 +56,7 @@ public class CameraController : MonoBehaviour
         float x_direction = Input.GetAxis("Horizontal");
         float pullback = Input.GetAxis("Vertical");
 
-        peeking = Input.GetKey(KeyCode.Q);
+        peeking = Input.GetKey(peekKeybind);
 
         if (peeking)
         {
