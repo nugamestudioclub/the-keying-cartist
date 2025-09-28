@@ -42,7 +42,7 @@ public class TextureDrawer
     }
 
     // draws from the last position to this one by stamping repeatedly
-    public void DrawTo(Vector2 position, float smoothness = 0.1f)
+    public void DrawTo(Vector2 position, float smoothness = 0.1f, bool do_jitter = true)
     {
         // cache the previous position because draw overwrites it
         var previous = m_previousPosition;
@@ -54,7 +54,14 @@ public class TextureDrawer
 
         for (int i = 0; i < step_count; i++)
         {
-            Draw(Vector2.Lerp(previous, position, (float)i / step_count));
+            var target_draw_pos = Vector2.Lerp(previous, position, (float)i / step_count);
+
+            if (do_jitter)
+            {
+                target_draw_pos += Random.insideUnitCircle;
+            }
+
+            Draw(target_draw_pos);
         }
 
         // draw updates the previous position from the mouse, so we dont need to update the cache.

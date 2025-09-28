@@ -8,7 +8,7 @@ public class Brush
 
     public Brush(Texture2D brush_texture = null)
     {
-        m_brushTexture = brush_texture == null ? MakeSquareTexture(64) : brush_texture;
+        m_brushTexture = brush_texture == null ? MakeSquareTexture(8) : brush_texture;
         m_brushMaterial = new Material(Shader.Find("Sprites/Default")); // support alpha on brushes
         m_brushMaterial.color = Color.white;
 
