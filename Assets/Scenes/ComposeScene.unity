@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 1689140396}
   m_Layer: 0
   m_Name: Guy
-  m_TagString: Untagged
+  m_TagString: Driver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1197,7 +1197,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_focusOverlay: {fileID: 707560351}
+  peekTarget: {fileID: 0}
+  peekKeybind: 113
   m_cameraSpeed: 4
+  cameraRotationSpeed: 5
   m_leftSideBound: {fileID: 805617264}
   m_rightSideBound: {fileID: 878065411}
   m_pullbackAnchor: {fileID: 998170334}
