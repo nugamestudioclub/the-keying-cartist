@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -12,9 +13,15 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject m_focusOverlay;
     private FocusOverlayHandler m_focusHandler;
 
+    [SerializeField] private GameObject peekTarget;
+    [SerializeField] private KeyCode peekKeybind = KeyCode.Q;
+    private bool peeking = false;
+    private Vector3 startRotation;
+
     [Space(10)]
 
     [SerializeField] private float m_cameraSpeed = 4f;
+    [SerializeField] private float cameraRotationSpeed = 5f;
 
     [SerializeField] private Transform m_leftSideBound;
     [SerializeField] private Transform m_rightSideBound;
@@ -31,17 +38,32 @@ public class CameraController : MonoBehaviour
 
         m_boundAnchor = new GameObject("BoundAnchor").transform;
         m_boundAnchor.position = (m_leftSideBound.position + m_rightSideBound.position) / 2f;
-
+        
         m_anchorTarget = m_boundAnchor;
 
         m_focusHandler = new FocusOverlayHandler(m_focusOverlay);
+    }
+
+    private void Start()
+    {
+        startRotation = new Vector3(m_camera.rotation.x, m_camera.rotation.y, m_camera.rotation.z);
+
+        peekTarget = GameObject.FindGameObjectWithTag("Driver");
     }
 
     private void FixedUpdate()
     {
         float x_direction = Input.GetAxis("Horizontal");
         float pullback = Input.GetAxis("Vertical");
-        
+
+        peeking = Input.GetKey(peekKeybind);
+
+        if (peeking)
+        {
+            x_direction = 0;
+            pullback = 0;
+        }
+
         // move the camera anchor for the bounds if horizontal input provided
         if (x_direction != 0) MoveBoundsAnchor(x_direction);
         
@@ -57,15 +79,26 @@ public class CameraController : MonoBehaviour
             m_isPulledBack = false;
         }
 
-        m_focusHandler.ChangeFocus(m_isPulledBack ? 1f : 0f);
-        
         LerpCamera();
     }
 
     private void LerpCamera()
     {
-        m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.fixedDeltaTime);
-        m_camera.eulerAngles = Vector3.Lerp(m_camera.eulerAngles, m_anchorTarget.eulerAngles, m_cameraSpeed * Time.fixedDeltaTime);
+        if (peeking && peekTarget != null)
+        {
+            Vector3 targetDirection = (peekTarget.transform.position - m_camera.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
+        } else
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(startRotation);
+            transform.rotation = Quaternion.Lerp(m_camera.transform.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
+
+            m_focusHandler.ChangeFocus(m_isPulledBack ? 1f : 0f);
+
+            m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.fixedDeltaTime);
+        }
+
     }
 
     private void MoveBoundsAnchor(float x_direction)
