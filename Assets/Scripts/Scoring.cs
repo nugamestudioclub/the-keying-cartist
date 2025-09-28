@@ -9,7 +9,11 @@ public class Scoring
     {
         var drawing_2d = new Texture2D(drawing.width, drawing.height, TextureFormat.ARGB32, false);
 
-        Graphics.CopyTexture(drawing, drawing_2d);
+
+        RenderTexture.active = drawing;
+        drawing_2d.ReadPixels(new Rect(0, 0, drawing.width, drawing.height), 0, 0);
+        drawing_2d.Apply();
+        RenderTexture.active = null;
 
         uint hits = 0;
         uint total = 0;
