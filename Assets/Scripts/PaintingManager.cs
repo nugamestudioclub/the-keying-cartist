@@ -7,6 +7,7 @@ public class PaintingManager : MonoBehaviour
     [SerializeField] private Camera m_mainCamera;
     [SerializeField] private CameraController m_cameraController;
     [SerializeField] private Renderer m_targetRenderer;
+    [SerializeField] private Renderer m_focusRenderer;
     [SerializeField] private LayerMask m_paintObjLayer;
 
     [Space(10)]
@@ -17,7 +18,6 @@ public class PaintingManager : MonoBehaviour
     [Space(10)]
 
     [SerializeField] private Texture2D m_brushTexture;
-    [SerializeField] private Texture2D m_goalTexture;
     [SerializeField] private AnimationCurve m_closeEnoughCurve;
     [SerializeField] private AnimationCurve m_wastedPixelPenaltyCurve;
 
@@ -25,6 +25,8 @@ public class PaintingManager : MonoBehaviour
 
     private void Start()
     {
+        m_focusRenderer.material.mainTexture = GameManager.Instance.CurrentLevelGoalTexture;
+
         var tex = new RenderTexture(m_drawTextureWidth, m_drawTextureHeight, 0, RenderTextureFormat.ARGB32);
         tex.Create();
 
@@ -61,7 +63,7 @@ public class PaintingManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            new Scoring(m_drawer.RenderTexture, m_goalTexture, m_wastedPixelPenaltyCurve, m_closeEnoughCurve).ScoreResult();
+            Debug.Log(new Scoring(m_drawer.RenderTexture, GameManager.Instance.CurrentLevelGoalTexture, m_wastedPixelPenaltyCurve, m_closeEnoughCurve).ScoreResult());
         }
     }
 
@@ -71,6 +73,8 @@ public class PaintingManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity, m_paintObjLayer))
         {
+            if (hit.collider.gameObject.CompareTag("Block")) return Vector2.one * -1;
+
             var hit_coord = hit.textureCoord;
 
             float w_scalar = (float)m_drawTextureHeight / m_drawTextureWidth;

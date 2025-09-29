@@ -25,7 +25,6 @@ public class OwnerWalkingScript : MonoBehaviour
 
     [SerializeField]
     private Sprite[] walkingFrames;
-
     [SerializeField]
     private Sprite idleFrame;
 
