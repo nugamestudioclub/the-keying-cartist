@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=c19e0eb09975a4a36a4c8ba69a765ee6&amp;type=3#MainMenuStyle" />
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Untitled_Artwork%2076.png?fileID=21300000&amp;guid=c83ebaa9b57f74e448be694eb2d9d168&amp;type=3#Untitled_Artwork 76&quot;);">
+        <ui:Button text="Level One" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level1" class="button" style="top: 500px; height: 200px; font-size: 80px;" />
+        <ui:Button text="Level two" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level2" class="button" style="top: 299px; height: 200px; left: 700px; font-size: 80px;" />
+        <ui:Button text="Level Three" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level3" class="button" style="top: 96px; height: 200px; left: 1200px; font-size: 80px;" />
+    </ui:VisualElement>
+</ui:UXML>

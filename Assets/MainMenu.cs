@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnPlayGameClick(ClickEvent evt) {
          Debug.Log("You clicked the start button");
-         SceneManager.LoadScene("");
+         SceneManager.LoadScene("LevelSelect");
     }
 
     private void OnSettingsClick(ClickEvent eve)
