@@ -15,8 +15,8 @@ public class OwnerWalkingScript : MonoBehaviour
     [SerializeField]
     private float[] timeAtEachPosition;
 
-    [SerializeField]
-    private float[] lerpSpeedToEachPosition;
+    //[SerializeField]
+    //private float[] lerpSpeedToEachPosition;
 
     [Space(10)]
 
@@ -31,6 +31,8 @@ public class OwnerWalkingScript : MonoBehaviour
     private int locationToMoveTo = 0;
     private bool isAnimating = false;
     private int walkingFrameIndex = 0;
+
+    private float distanceToPosition;
 
     private Coroutine animatingCoroutine;
 
@@ -51,9 +53,9 @@ public class OwnerWalkingScript : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 newLocation = positions[locationToMoveTo];
-        float lerpRate = lerpSpeedToEachPosition[locationToMoveTo];
+        //float lerpRate = lerpSpeedToEachPosition[locationToMoveTo];
 
-        var target_pos = Vector3.MoveTowards(transform.position, newLocation, Time.fixedDeltaTime * lerpRate);
+        var target_pos = Vector3.MoveTowards(transform.position, newLocation, Time.fixedDeltaTime * distanceToPosition / timeAtEachPosition[locationToMoveTo]);
 
         if (target_pos == transform.position)
         {
@@ -92,7 +94,7 @@ public class OwnerWalkingScript : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f / lerpSpeedToEachPosition[locationToMoveTo]);
+            yield return new WaitForSeconds(.25f);
 
             walkingFrameIndex = (walkingFrameIndex + 1) % walkingFrames.Length;
             spriteRenderer.sprite = walkingFrames[walkingFrameIndex];
@@ -104,6 +106,7 @@ public class OwnerWalkingScript : MonoBehaviour
         for (int i = 0; i < positions.Length; i += 1)
         {
             locationToMoveTo = i;
+            distanceToPosition = Vector3.Distance(transform.position, positions[i]);
             yield return new WaitForSeconds(timeAtEachPosition[i]);
         }
         yield return null;

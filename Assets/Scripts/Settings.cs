@@ -9,6 +9,7 @@ public class Settings : MonoBehaviour
     private UIDocument _document;
     private Button _button;
     private Slider _volumeSlider;
+    public static float Volume = 1f;
 
 
     private void Awake()
@@ -28,6 +29,7 @@ public class Settings : MonoBehaviour
             _volumeSlider.RegisterValueChangedCallback(evt =>
             {
                 AudioListener.volume = evt.newValue;
+                Settings.Volume = evt.newValue;
                 Debug.Log("Volume set to: " + evt.newValue);
             });
         }
@@ -39,7 +41,7 @@ public class Settings : MonoBehaviour
     
     private void OnDisable()
     {
-        _button.UnregisterCallback<ClickEvent>(OnMainClick);
+        _button?.UnregisterCallback<ClickEvent>(OnMainClick);
     }
     
     private void OnMainClick(ClickEvent evt)

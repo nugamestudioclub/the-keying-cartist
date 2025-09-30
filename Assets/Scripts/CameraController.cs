@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Transform m_leftSideBound;
     [SerializeField] private Transform m_rightSideBound;
+    [SerializeField] private Transform m_peekAnchor;
 
     private Transform m_boundAnchor;
 
@@ -58,24 +59,29 @@ public class CameraController : MonoBehaviour
         float x_direction = Input.GetAxis("Horizontal");
         float pullback = Input.GetAxis("Vertical");
 
+        // while peeking, you cant Focus or Pan the camera
         peeking = Input.GetKey(peekKeybind);
 
-        if (peeking)
+        if (peeking && m_anchorTarget != m_peekAnchor)
         {
-            x_direction = 0;
-            pullback = 0;
+            m_anchorTarget = m_peekAnchor;
+            m_isPulledBack = false;
+        }
+        else if (!peeking && m_anchorTarget == m_peekAnchor)
+        {
+            m_anchorTarget = m_boundAnchor;
         }
 
         // move the camera anchor for the bounds if horizontal input provided
         if (x_direction != 0) MoveBoundsAnchor(x_direction);
         
         // if we're to pull the camera back and aren't already doing so, swap the anchor we're using
-        if (pullback < -0.05f && !m_isPulledBack)
+        if (!peeking && pullback < -0.05f && !m_isPulledBack)
         {
             m_anchorTarget = m_pullbackAnchor;
             m_isPulledBack = true;
         }
-        else if (pullback >= -0.05f && m_isPulledBack) // and vice versa
+        else if (!peeking && pullback >= -0.05f && m_isPulledBack) // and vice versa
         {
             m_anchorTarget = m_boundAnchor;
             m_isPulledBack = false;
@@ -86,21 +92,21 @@ public class CameraController : MonoBehaviour
 
     private void LerpCamera()
     {
+        Quaternion targetRotation;
         if (peeking && peekTarget != null)
         {
-            Vector3 targetDirection = (peekTarget.transform.position - m_camera.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            m_camera.rotation = Quaternion.Lerp(m_camera.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
-        } else
+            targetRotation = Quaternion.LookRotation((peekTarget.transform.position - m_camera.position).normalized);
+        } 
+        else
         {
-            Quaternion targetRotation = m_isPulledBack ? m_pullbackAnchor.rotation : Quaternion.LookRotation(forwardDirection);
-            m_camera.rotation = Quaternion.Lerp(m_camera.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
-
-            m_focusHandler.ChangeFocus(m_isPulledBack ? 1f : 0f);
-
-            m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.fixedDeltaTime);
+            targetRotation = m_isPulledBack ? m_pullbackAnchor.rotation : Quaternion.LookRotation(forwardDirection);
         }
 
+        m_camera.rotation = Quaternion.Lerp(m_camera.rotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
+
+        m_focusHandler.ChangeFocus(m_isPulledBack);
+
+        m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.fixedDeltaTime);
     }
 
     private void MoveBoundsAnchor(float x_direction)
