@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     private Button _button;
 
 
+
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
@@ -30,8 +31,7 @@ public class MainMenu : MonoBehaviour
       _button.UnregisterCallback<ClickEvent>(OnPlayGameClick);
     }
 
-    private void OnPlayGameClick(ClickEvent eve)
-    {
+    private void OnPlayGameClick(ClickEvent evt) {
          Debug.Log("You clicked the start button");
     }
 
