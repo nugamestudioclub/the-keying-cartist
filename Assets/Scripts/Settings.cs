@@ -8,13 +8,33 @@ public class Settings : MonoBehaviour
 {
     private UIDocument _document;
     private Button _button;
+    private Slider _volumeSlider;
+
 
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
         _button = _document.rootVisualElement.Q<Button>("MainMenu") as Button;
         _button.RegisterCallback<ClickEvent>(OnMainClick);
-        
+        _button = _document.rootVisualElement.Q<Button>("Continue") as Button;
+        _volumeSlider = _document.rootVisualElement.Q<Slider>("VolumeSlider");
+
+        if (_volumeSlider != null)
+        {
+         
+            _volumeSlider.value = AudioListener.volume;
+
+  
+            _volumeSlider.RegisterValueChangedCallback(evt =>
+            {
+                AudioListener.volume = evt.newValue;
+                Debug.Log("Volume set to: " + evt.newValue);
+            });
+        }
+        else
+        {
+            Debug.LogWarning("VolumeSlider not found in UI Document.");
+        }
     }
     
     private void OnDisable()
