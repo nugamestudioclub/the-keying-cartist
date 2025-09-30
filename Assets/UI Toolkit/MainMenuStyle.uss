@@ -5,22 +5,23 @@
 }
 
 .button {
-    font-size: 40px;
-    width: 300px;
+    font-size: 100px;
+    width: 380px;
     height: 100px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    background-image: url("project://database/Assets/UI%20Toolkit/Untitled%20design.png?fileID=21300000&guid=a8168475746114d3bbd472a46045b3ae&type=3#Untitled design");
     -unity-font: url("project://database/Assets/UI%20Toolkit/play-jack-font/Playjackdemo-0vog4.ttf?fileID=12800000&guid=6268151317cab46f08fc68265d404a3d&type=3#Playjackdemo-0vog4");
-    left: 95px;
-    border-top-width: 10px;
-    border-right-width: 10px;
-    border-bottom-width: 10px;
-    border-left-width: 10px;
-    border-left-color: rgb(122, 163, 218);
-    border-right-color: rgb(122, 163, 218);
-    border-top-color: rgb(122, 163, 218);
-    border-bottom-color: rgb(122, 163, 218);
+    left: 200px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgb(253, 186, 25);
+    -unity-font-definition: initial;
 }
