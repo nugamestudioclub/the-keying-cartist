@@ -1,5 +1,5 @@
 .header {
-    font-size: 150px;
+    font-size: 80px;
     -unity-font: url("project://database/Assets/UI%20Toolkit/play-jack-font/Playjackdemo-0vog4.ttf?fileID=12800000&guid=6268151317cab46f08fc68265d404a3d&type=3#Playjackdemo-0vog4");
     -unity-font-definition: initial;
 }

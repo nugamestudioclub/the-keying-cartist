@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -33,16 +34,21 @@ public class MainMenu : MonoBehaviour
 
     private void OnPlayGameClick(ClickEvent evt) {
          Debug.Log("You clicked the start button");
+         SceneManager.LoadScene("");
     }
 
     private void OnSettingsClick(ClickEvent eve)
     {
+        SceneManager.LoadScene("Settings");
         Debug.Log("You clicked the settings button");
+     
     }
 
     private void OnCreditsClick(ClickEvent eve)
     {
+        SceneManager.LoadScene("Credits");
         Debug.Log("You clicked the credits button");
+   
     }
 
     private void OnExitClick(ClickEvent eve)
