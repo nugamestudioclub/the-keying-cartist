@@ -1,0 +1,27 @@
+.header {
+    font-size: 150px;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/play-jack-font/Playjackdemo-0vog4.ttf?fileID=12800000&guid=6268151317cab46f08fc68265d404a3d&type=3#Playjackdemo-0vog4");
+    -unity-font-definition: initial;
+}
+
+.button {
+    font-size: 100px;
+    width: 380px;
+    height: 100px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/play-jack-font/Playjackdemo-0vog4.ttf?fileID=12800000&guid=6268151317cab46f08fc68265d404a3d&type=3#Playjackdemo-0vog4");
+    left: 200px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgb(253, 186, 25);
+    -unity-font-definition: initial;
+}
