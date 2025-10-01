@@ -40,7 +40,11 @@ public class LevelSelect : MonoBehaviour
         {
             _levelOne.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw the numbers six seven and candy"));
             _levelOne.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
-            _levelOne.clicked += () => GameManager.ChooseLevel(0); 
+            _levelOne.clicked += () =>
+            {
+                GameManager.Instance.ChooseLevel(0);
+                UnityEngine.SceneManagement.SceneManager.LoadScene("ComposeScene");
+            };
         }
 
         // Level 2
@@ -48,7 +52,11 @@ public class LevelSelect : MonoBehaviour
         {
             _levelTwo.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw a bird and someone flipping the bird"));
             _levelTwo.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
-            _levelTwo.clicked += () => GameManager.ChooseLevel(1); 
+            _levelTwo.clicked += () =>
+            {
+                GameManager.Instance.ChooseLevel(1);
+                UnityEngine.SceneManagement.SceneManager.LoadScene("ComposeScene");
+            };
         }
 
         // Level 3
@@ -56,7 +64,11 @@ public class LevelSelect : MonoBehaviour
         {
             _levelThree.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw hit game Hollow Knight and Silksong Hornet with sneakers and flowers around"));
             _levelThree.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
-            _levelThree.clicked += () => GameManager.ChooseLevel(2); 
+            _levelThree.clicked += () =>
+            {
+                GameManager.Instance.ChooseLevel(2);
+                UnityEngine.SceneManagement.SceneManager.LoadScene("ComposeScene");
+            };
         }
 
         // Main Menu
