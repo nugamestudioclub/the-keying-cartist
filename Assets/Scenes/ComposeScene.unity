@@ -2729,7 +2729,9 @@ MonoBehaviour:
     Q
     to <b>Peek</b>
 
-    S or Down to <b>Focus</b>'
+    S or Down to <b>Focus</b>
+
+    Esc Pause Menu'
 --- !u!222 &1390888377
 CanvasRenderer:
   m_ObjectHideFlags: 0

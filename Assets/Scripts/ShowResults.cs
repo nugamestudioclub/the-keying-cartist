@@ -17,7 +17,7 @@ public class ShowResults : MonoBehaviour
             scoreLabel.text = "Score: " + GameManager.ScorePercentage.ToString("F1") + "%";
 
         // Set other labels based on whether time ran out
-        if (GameManager.DidRunOutOfTime)
+        if (GameManager.DidRunOutOfTime == false)
         {
             if (messageLabel != null)
                 messageLabel.text = "You ran out of time";
