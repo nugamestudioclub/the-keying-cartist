@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=c19e0eb09975a4a36a4c8ba69a765ee6&amp;type=3#MainMenuStyle" />
     <ui:VisualElement style="flex-grow: 1;">
-        <ui:Button text="End Early" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" style="left: 1513px; top: 24px;" />
+        <ui:Button text="End Early" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndEarly" class="button" style="left: 1513px; top: 24px;" />
     </ui:VisualElement>
 </ui:UXML>
