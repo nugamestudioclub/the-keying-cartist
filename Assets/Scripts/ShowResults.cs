@@ -9,8 +9,8 @@ public class ShowResults : MonoBehaviour
         var root = GetComponent<UIDocument>().rootVisualElement;
 
         // Labels in the results scene
-        var scoreLabel = root.Q<Label>("ScoreLabel");
-        var messageLabel = root.Q<Label>("MessageLabel");
+        var scoreLabel = root.Q<Label>("Score");
+        var messageLabel = root.Q<Label>("Heading");
 
         // Set the score label
         if (scoreLabel != null)
