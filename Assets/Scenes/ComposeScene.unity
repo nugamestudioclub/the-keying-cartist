@@ -8032,12 +8032,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 4.0113034
+      outSlope: 4.0113034
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.026211282
     - serializedVersion: 3
       time: 0.7
       value: 1
@@ -8063,22 +8063,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.91
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 13.04846
-      outSlope: 13.04846
+      inSlope: 3.1271582
+      outSlope: 3.1271582
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.035742823
+      inWeight: 0.3113582
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
