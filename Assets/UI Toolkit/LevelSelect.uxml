@@ -1,8 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=c19e0eb09975a4a36a4c8ba69a765ee6&amp;type=3#MainMenuStyle" />
     <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Untitled_Artwork%2076.png?fileID=21300000&amp;guid=c83ebaa9b57f74e448be694eb2d9d168&amp;type=3#Untitled_Artwork 76&quot;);">
-        <ui:Button text="Level One" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level1" class="button" style="top: 500px; height: 200px; font-size: 80px;" />
-        <ui:Button text="Level two" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level2" class="button" style="top: 299px; height: 200px; left: 700px; font-size: 80px;" />
-        <ui:Button text="Level Three" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level3" class="button" style="top: 96px; height: 200px; left: 1200px; font-size: 80px;" />
+        <ui:Button text="Level One" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level1" class="button" style="top: 280px; height: 200px; font-size: 80px;" />
+        <ui:Button text="Level two" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level2" class="button" style="top: 84px; height: 200px; left: 700px; font-size: 80px;" />
+        <ui:Button text="Level Three" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level3" class="button" style="top: -125px; height: 200px; left: 1200px; font-size: 80px;" />
+        <ui:Button text="Main Menu " parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" class="button" style="top: 328px; left: 32px;" />
+        <ui:Label tabindex="-1" text="Key that car" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ChangingLabel" class="header" style="height: 114px; width: 342px; top: -63px; right: 871px; left: 719px; scale: 2 2; font-size: 40px; flex-wrap: wrap;" />
+        <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Visual/IMG_0255.png?fileID=2800000&amp;guid=d9aa8c734504c9147ba3170221dd4e8e&amp;type=3#IMG_0255&quot;); height: 150px; width: 200px; left: 790px; top: -26px; -unity-background-scale-mode: scale-to-fit; -unity-slice-scale: 1px; scale: 5 5; align-self: center; -unity-slice-right: 0; -unity-slice-left: 0; flex-wrap: nowrap; margin-top: -1px; margin-right: -5px; margin-left: -5px;" />
+        <ui:Label tabindex="-1" text="Choose your Level" parse-escape-sequences="true" display-tooltip-when-elided="true" class="header" style="top: -943px; -unity-text-align: upper-center; font-size: 150px;" />
     </ui:VisualElement>
 </ui:UXML>

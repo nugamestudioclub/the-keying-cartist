@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class GameManager : MonoBehaviour
     public void StoreScoreAndEnd(bool did_run_out_of_time)
     {
         ScorePercentage = GameObject.FindObjectOfType<PaintingManager>().GetScore();
-
-        // scene swapping behavior here...
+        SceneManager.LoadScene("RanOutOfTime");
+       
+  
     }
 }
