@@ -44,8 +44,7 @@ public class GameManager : MonoBehaviour
     public void StoreScoreAndEnd(bool did_run_out_of_time)
     {
         ScorePercentage = GameObject.FindObjectOfType<PaintingManager>().GetScore();
+        DidRunOutOfTime = did_run_out_of_time;
         SceneManager.LoadScene("RanOutOfTime");
-       
-  
     }
 }
