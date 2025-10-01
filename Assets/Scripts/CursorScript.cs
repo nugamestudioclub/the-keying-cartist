@@ -17,6 +17,7 @@ public class CursorScript : MonoBehaviour
     private void Awake()
     {
         m_perspective = Camera.main;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Start()
