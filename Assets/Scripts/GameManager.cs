@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Texture2D[] m_levelGoalTextures;
 
     [HideInInspector] public Texture2D CurrentLevelGoalTexture;
+    [HideInInspector] public float ScorePercentage;
 
     [SerializeField] private int DEBUG_LevelSelect = 0;
 
@@ -31,8 +32,10 @@ public class GameManager : MonoBehaviour
         CurrentLevelGoalTexture = m_levelGoalTextures[level_index];
     }
 
-    public void DEBUG_End()
+    public void StoreScoreAndEnd(bool did_run_out_of_time)
     {
-        Debug.Log("UR DONE");
+        ScorePercentage = GameObject.FindObjectOfType<PaintingManager>().GetScore();
+
+        // scene swapping behavior here...
     }
 }

@@ -109,19 +109,19 @@ public class CameraController : MonoBehaviour
         m_camera.position = Vector3.Lerp(m_camera.position, m_anchorTarget.position, m_cameraSpeed * Time.fixedDeltaTime);
     }
 
-    private void MoveBoundsAnchor(float x_direction)
+    private void MoveBoundsAnchor(float z_dir)
     {
         // everything here is flipped (</>, +/-) to account for being rotated 180 degrees in world.
         var vec = m_boundAnchor.position;
-        vec.x -= x_direction * m_cameraSpeed * Time.fixedDeltaTime;
+        vec.z += z_dir * m_cameraSpeed * Time.fixedDeltaTime;
 
         m_boundAnchor.position = vec;
 
-        if (m_boundAnchor.position.x > m_leftSideBound.position.x)
+        if (m_boundAnchor.position.z < m_leftSideBound.position.z)
         {
             m_boundAnchor.position = m_leftSideBound.position;
         }
-        else if (m_boundAnchor.position.x < m_rightSideBound.position.x)
+        else if (m_boundAnchor.position.z > m_rightSideBound.position.z)
         {
             m_boundAnchor.position = m_rightSideBound.position;
         }

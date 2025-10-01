@@ -60,12 +60,9 @@ public class PaintingManager : MonoBehaviour
 
             m_drawer.DrawTo(draw_pos);
         }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log(new Scoring(m_drawer.RenderTexture, GameManager.Instance.CurrentLevelGoalTexture, m_wastedPixelPenaltyCurve, m_closeEnoughCurve).ScoreResult());
-        }
     }
+
+    public float GetScore() => new Scoring(m_drawer.RenderTexture, GameManager.Instance.CurrentLevelGoalTexture, m_wastedPixelPenaltyCurve, m_closeEnoughCurve).ScoreResult();
 
     private Vector2 GetDrawPosition(Vector2 mouse_pos)
     {

@@ -38,7 +38,6 @@ public class CursorScript : MonoBehaviour
             StopAllCoroutines();
             m_renderer.sprite = m_drawingSprite;
 
-            m_source.volume = Settings.Volume / 5f;
             m_source.Play();
         }
         else if (Input.GetMouseButtonUp(0))
