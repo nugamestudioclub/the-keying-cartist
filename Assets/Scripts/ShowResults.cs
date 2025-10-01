@@ -14,7 +14,7 @@ public class ShowResults : MonoBehaviour
 
         // Set the score label
         if (scoreLabel != null)
-            scoreLabel.text = "Score: " + GameManager.ScorePercentage.ToString("F1") + "%";
+            scoreLabel.text = "Score: " + GameManager.ScorePercentage.ToString("F2") + "%";
 
         // Set other labels based on whether time ran out
         if (GameManager.DidRunOutOfTime == false)
