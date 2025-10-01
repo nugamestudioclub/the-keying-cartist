@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         CurrentLevelGoalTexture = m_levelGoalTextures[level_index];
     }
 
+    public static void EndLoss()
+    {
+        GameManager.Instance.StoreScoreAndEnd(true);
+    }
+
     public void StoreScoreAndEnd(bool did_run_out_of_time)
     {
         ScorePercentage = GameObject.FindObjectOfType<PaintingManager>().GetScore();
