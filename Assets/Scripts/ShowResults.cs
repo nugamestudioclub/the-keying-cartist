@@ -22,7 +22,7 @@ public class ShowResults : MonoBehaviour
             if (messageLabel != null)
                 messageLabel.text = "You ran out of time";
         }
-        else
+        if(GameManager.DidRunOutOfTime == true)
         {
             if (messageLabel != null)
                 messageLabel.text = "You keyed that car";
