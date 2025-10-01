@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Texture2D[] m_levelGoalTextures;
 
     [HideInInspector] public Texture2D CurrentLevelGoalTexture;
-    [HideInInspector] public float ScorePercentage;
+    [HideInInspector] public static float ScorePercentage;
 
     [SerializeField] private int DEBUG_LevelSelect = 0;
+    public static bool DidRunOutOfTime;   
+
 
     private void Awake()
     {
