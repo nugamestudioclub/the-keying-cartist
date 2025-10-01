@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.SceneManagement; 
 
 public class LevelSelect : MonoBehaviour
 {
     private Label _label;
     private string _originalText;
 
-    private Button _playButton;
-    private Button _settingsButton;
-    private Button _quitButton;
-    private Button _mainMenuButton; 
+    private Button _levelOne;
+    private Button _levelTwo;
+    private Button _levelThree;
+    private Button _mainMenuButton;
+
+    
+    public GameManager GameManager;
 
     void OnEnable()
     {
@@ -24,39 +26,37 @@ public class LevelSelect : MonoBehaviour
 
         _originalText = _label.text;
 
-
         _label.style.whiteSpace = WhiteSpace.Normal;
         _label.style.overflow = Overflow.Visible;
         _label.style.height = StyleKeyword.Auto;
 
-     
-        _playButton = root.Q<Button>("Level1");
-        _settingsButton = root.Q<Button>("Level2");
-        _quitButton = root.Q<Button>("Level3");
-        _mainMenuButton = root.Q<Button>("MainMenu"); 
+        _levelOne = root.Q<Button>("Level1");
+        _levelTwo = root.Q<Button>("Level2");
+        _levelThree = root.Q<Button>("Level3");
+        _mainMenuButton = root.Q<Button>("MainMenu");
 
         // Level 1
-        if (_playButton != null)
+        if (_levelOne != null)
         {
-            _playButton.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw the numbers six seven and candy"));
-            _playButton.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
-            _playButton.clicked += () => LoadScene("");
+            _levelOne.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw the numbers six seven and candy"));
+            _levelOne.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
+            _levelOne.clicked += () => GameManager.ChooseLevel(0); 
         }
 
         // Level 2
-        if (_settingsButton != null)
+        if (_levelTwo != null)
         {
-            _settingsButton.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw a bird and someone flipping the bird"));
-            _settingsButton.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
-            _settingsButton.clicked += () => LoadScene("");
+            _levelTwo.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw a bird and someone flipping the bird"));
+            _levelTwo.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
+            _levelTwo.clicked += () => GameManager.ChooseLevel(1); 
         }
 
         // Level 3
-        if (_quitButton != null)
+        if (_levelThree != null)
         {
-            _quitButton.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw hit game Hollow Knight and Silksong Hornet with sneakers and flowers around"));
-            _quitButton.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
-            _quitButton.clicked += () => LoadScene("");
+            _levelThree.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Draw hit game Hollow Knight and Silksong Hornet with sneakers and flowers around"));
+            _levelThree.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
+            _levelThree.clicked += () => GameManager.ChooseLevel(2); 
         }
 
         // Main Menu
@@ -64,7 +64,7 @@ public class LevelSelect : MonoBehaviour
         {
             _mainMenuButton.RegisterCallback<PointerEnterEvent>(evt => SetLabel("Go back to the Main Menu"));
             _mainMenuButton.RegisterCallback<PointerLeaveEvent>(evt => ResetLabel());
-            _mainMenuButton.clicked += () => LoadScene("MainMenuTest");
+            _mainMenuButton.clicked += () => UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuTest");
         }
     }
 
@@ -76,10 +76,5 @@ public class LevelSelect : MonoBehaviour
     private void ResetLabel()
     {
         _label.text = _originalText;
-    }
-
-    private void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 }
