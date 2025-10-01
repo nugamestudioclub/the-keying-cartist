@@ -11,6 +11,7 @@ public class CursorScript : MonoBehaviour
 
     [SerializeField] private SpriteRenderer m_renderer;
     [SerializeField] private AudioSource m_source;
+    [SerializeField] private ParticleSystem m_system;
     private Camera m_perspective;
 
     private void Awake()
@@ -39,11 +40,13 @@ public class CursorScript : MonoBehaviour
             m_renderer.sprite = m_drawingSprite;
 
             m_source.Play();
+            m_system.Play();
         }
         else if (Input.GetMouseButtonUp(0))
         {
             StartCoroutine(IEAnimateKey());
             m_source.Stop();
+            m_system.Stop();
         }
     }
 
